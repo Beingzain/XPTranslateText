@@ -30,17 +30,7 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-
-      - name: Write Keys
-        run: |
-          if [ ! -z "${{ secrets.KEY_STORE }}" ]; then
-            echo androidStorePassword='${{ secrets.KEY_STORE_PASSWORD }}' >> keystore.properties
-            echo androidKeyAlias='${{ secrets.ALIAS }}' >> keystore.properties
-            echo androidKeyPassword='${{ secrets.KEY_PASSWORD }}' >> keystore.properties
-            echo androidStoreFile='key.jks' >> keystore.properties
-            echo "${{ secrets.KEY_STORE }}" | base64 --decode > app/key.jks
-          fi
-
+      
       - name: Build with Gradle
         run: |
           chmod +x gradlew
